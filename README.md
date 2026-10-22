@@ -32,7 +32,7 @@ pas la validation du projet de formation.
 | Pipeline d’orchestration des flux | Orchestration et automatisation | À documenter |
 | Système RAG | IA et recherche documentaire | À documenter |
 | Avantages Sportifs | Pipeline de données complet | À documenter |
-| ATLAS — mission en entreprise | ETL, modélisation et Power BI | À documenter |
+| ATLAS — mission en entreprise | Python, PostgreSQL, dbt, Power BI | [Consulter la fiche](projets/atlas/README.md) |
 
 ## Organisation
 
