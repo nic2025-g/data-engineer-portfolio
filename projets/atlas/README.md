@@ -48,7 +48,7 @@ dbt — mart
 Power Query / Power BI
 ```
 
-Le raccordement définitif du modèle sémantique Power BI existant aux nouvelles tables analytiques reste à finaliser.
+Une nouvelle version du tableau de bord Power BI a été construite à partir des cinq tables analytiques mart de PostgreSQL. Elle comprend trois pages décisionnelles : Synthèse Élus, Pilotage DGST et Fiche Opération. Les relations et les filtres ont été vérifiés sur les quatre opérations pilotes. Cette version constitue un prototype fonctionnel ; l'automatisation complète du pipeline et son exploitation en production restent à réaliser.
 
 ## Choix techniques
 
@@ -82,9 +82,31 @@ Les trois vues Power BI sont :
 - **Pilotage DGST** : budgets, marchés et financements.
 - **Fiche Opération** : analyse détaillée d'une opération sélectionnée.
 
+## Tableau de bord Power BI
+
+Le tableau de bord ATLAS a été reconstruit à partir des cinq tables analytiques `mart` issues de PostgreSQL et dbt. Les relations du modèle et les filtres ont été vérifiés sur les quatre opérations pilotes.
+
+### 1. Synthèse Élus
+
+Vue globale des quatre opérations : budgets, subventions et indicateurs de développement durable.
+
+![Synthèse Élus](captures/01_Synthese_Elus.png)
+
+### 2. Pilotage DGST
+
+Suivi des budgets, des 12 lots de travaux, des subventions et des échéances prévues. L'indicateur d'échéance dépassée est calculé à partir des dates du jeu de données et ne constitue pas une confirmation de retard sur le terrain.
+
+![Pilotage DGST](captures/02_Pilotage_DGST.png)
+
+### 3. Fiche Opération
+
+Analyse détaillée d'une opération sélectionnée : budget, lots, subventions et 16 indicateurs de développement durable, avec comparaison entre valeurs cibles et constatées.
+
+![Fiche Opération](captures/03_Fiche_Operation.png)
+
 ## Limites et améliorations envisagées
 
-- Finaliser le raccordement du modèle sémantique Power BI V2 aux tables `mart`.
+- Envisager la migration de l'ancien modèle sémantique Power BI V2 vers la nouvelle architecture analytique. Un nouveau tableau de bord     fonctionnel, directement connecté aux cinq tables mart, a déjà été réalisé et testé.
 - Étendre le périmètre au-delà des quatre opérations pilotes.
 - Standardiser davantage les documents sources.
 - Intégrer les informations réelles de paiement et de clôture lorsqu'elles seront disponibles.
