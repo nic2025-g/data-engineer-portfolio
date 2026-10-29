@@ -30,7 +30,7 @@ pas la validation du projet de formation.
 | Construction et tests d’une infrastructure | Infrastructure de données | À documenter |
 | Modélisation d’une infrastructure cloud | Cloud | À documenter |
 | Pipeline d’orchestration des flux | Orchestration et automatisation | À documenter |
-| Système RAG | IA et recherche documentaire | À documenter |
+| Puls-Events — Assistant culturel RAG | Python, Mistral AI, FAISS, LangChain, Streamlit | [Consulter la fiche](projets/puls-events/README.md) |
 | Avantages Sportifs | Pipeline de données complet | À documenter |
 | ATLAS — mission en entreprise | Python, PostgreSQL, dbt, Power BI | [Consulter la fiche](projets/atlas/README.md) |
 
