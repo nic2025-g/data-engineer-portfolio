@@ -12,6 +12,14 @@ Le système associe une recherche sémantique dans une base vectorielle à un mo
 
 **Dépôt source :** https://github.com/nic2025-g/projet11-rag-puls-events
 
+### Ma contribution personnelle
+
+J'ai personnellement conçu et développé le pipeline de préparation des données culturelles, depuis la collecte des événements OpenAgenda jusqu'à la construction de l'index vectoriel FAISS.
+
+J'ai intégré les embeddings Mistral et la chaîne RAG avec LangChain, réalisé les tests et documenté les choix techniques.
+
+Après la validation académique du POC, j'ai également développé une interface Web Streamlit, un mécanisme de secours FAISS et des tests complémentaires afin d'améliorer l'utilisation et la robustesse de l'application.
+
 ## 2. Problématique métier
 
 Les informations sur les événements culturels sont souvent dispersées entre plusieurs agendas et plateformes.
@@ -133,6 +141,26 @@ Le prototype a été développé et validé dans le cadre de la formation OpenCl
 
 Les tests couvrent notamment la préparation des données, les fonctionnalités RAG et les fonctions de présentation de l'interface.
 
+### Validation académique et améliorations ultérieures
+
+Le POC RAG initial a été validé dans le cadre de ma formation OpenClassrooms.
+
+L'interface Streamlit, le mécanisme de secours FAISS et les tests associés ont été développés après cette validation, dans une démarche d'amélioration continue et de valorisation du projet dans mon portfolio.
+
+Ces améliorations ont été intégrées au dépôt source via la Pull Request #14.
+
+### Tests automatisés et qualité des recommandations
+
+Le 28 octobre 2026, l'exécution locale de la suite complète avec Pytest a donné le résultat suivant :
+
+**39 tests réussis sur 39.**
+
+Les six tests supplémentaires liés à Streamlit ont été ajoutés dans le commit `6b04a04`, puis intégrés à la branche principale du dépôt source via la Pull Request #14 (commit de fusion `428d780`).
+
+Les 39 tests automatisés vérifient les comportements couverts par la suite de tests. Ils ne constituent pas, à eux seuls, une évaluation complète de la pertinence des recommandations ni de l'exactitude des réponses générées.
+
+Une évaluation complète de la qualité du système RAG nécessite également des scénarios métier représentatifs et une analyse des réponses produites.
+
 ## 7. Difficultés techniques et solutions
 
 ### Disponibilité de l'API Mistral
@@ -182,7 +210,7 @@ http://localhost:8501
 
 ## 10. Perspectives d'amélioration
 
-- Stabiliser l'accès au service de génération Mistral.
+- Améliorer la gestion des limites de l'API Mistral : nouvelles tentatives espacées, limitation du nombre d'appels et messages explicites pour l'utilisateur.
 - Renforcer les filtres métier, notamment la gratuité et les dates.
 - Ajouter des tests d'intégration pour les interactions Streamlit.
 - Améliorer la présentation visuelle des résultats.
@@ -193,3 +221,5 @@ http://localhost:8501
 **Statut :** POC académique validé — interface Streamlit intégrée au dépôt principal.
 
 **Dépôt GitHub :** https://github.com/nic2025-g/projet11-rag-puls-events
+
+[← Retour au portfolio](../../README.md)
