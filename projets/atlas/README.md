@@ -20,6 +20,21 @@ Le prototype porte sur quatre opérations pilotes et vise à faciliter le suivi 
 - Réalisation d'un dashboard Power BI comprenant trois vues décisionnelles.
 - Connexion et vérification des cinq tables analytiques PostgreSQL dans Power Query.
 
+## Ma contribution
+
+Dans le cadre de mon stage Data Engineering chez **DDATAS**, j'ai participé à la conception et au développement du prototype ATLAS.
+
+J'ai notamment réalisé :
+
+- L'analyse des besoins métier et la conception des modèles de données V1 et V2.
+- Le développement d'extracteurs Python pour structurer les données issues des documents Word.
+- Le chargement et la validation des données dans PostgreSQL.
+- La création des transformations SQL avec dbt, organisées en couches `staging` et `mart`.
+- La mise en place et l'exécution des tests de qualité des données.
+- La construction d'un tableau de bord Power BI de trois pages, connecté aux cinq tables analytiques PostgreSQL.
+
+Les retours métier ont guidé la simplification du modèle de données et l'adaptation des vues décisionnelles aux besoins des utilisateurs.
+
 ## Technologies
 
 Python · PostgreSQL · SQL · dbt · Docker · Power BI · Power Query · DAX · Git
@@ -47,8 +62,6 @@ dbt — mart
          v
 Power Query / Power BI
 ```
-
-Une nouvelle version du tableau de bord Power BI a été construite à partir des cinq tables analytiques mart de PostgreSQL. Elle comprend trois pages décisionnelles : Synthèse Élus, Pilotage DGST et Fiche Opération. Les relations et les filtres ont été vérifiés sur les quatre opérations pilotes. Cette version constitue un prototype fonctionnel ; l'automatisation complète du pipeline et son exploitation en production restent à réaliser.
 
 ## Choix techniques
 
@@ -82,6 +95,21 @@ Les trois vues Power BI sont :
 - **Pilotage DGST** : budgets, marchés et financements.
 - **Fiche Opération** : analyse détaillée d'une opération sélectionnée.
 
+### Qualité des données — Tests dbt
+
+Le **8 septembre 2026**, l'exécution de `dbt test` a confirmé la réussite des **14 tests sur 14**, sans échec.
+
+Les contrôles réalisés comprennent notamment :
+
+- **Intégrité des identifiants :** tests `not_null` et `unique` sur les références d'opérations et les identifiants des lots.
+- **Intégrité référentielle :** tests `relationships` vérifiant que les références présentes dans les budgets, lots, subventions et indicateurs DD correspondent à des opérations existantes.
+- **Validité des valeurs :** test `accepted_values` sur les phases budgétaires (`PROGRAMME`, `AVP`, `PRO`, `MARCHE`).
+- **Cohérence financière :** test SQL personnalisé comparant, pour chaque opération disposant des deux montants, la somme HT des lots au budget HT de la phase `MARCHE`.
+
+**Résultat vérifié : 14 tests réussis sur 14 — 08/09/2026.**
+
+Ces résultats confirment le respect des règles testées sur les données de cette exécution. Ils ne garantissent pas à eux seuls l'exactitude de toutes les informations métier.
+
 ## Tableau de bord Power BI
 
 Le tableau de bord ATLAS a été reconstruit à partir des cinq tables analytiques `mart` issues de PostgreSQL et dbt. Les relations du modèle et les filtres ont été vérifiés sur les quatre opérations pilotes.
@@ -106,7 +134,7 @@ Analyse détaillée d'une opération sélectionnée : budget, lots, subventions 
 
 ## Limites et améliorations envisagées
 
-- Envisager la migration de l'ancien modèle sémantique Power BI V2 vers la nouvelle architecture analytique. Un nouveau tableau de bord     fonctionnel, directement connecté aux cinq tables mart, a déjà été réalisé et testé.
+- Clarifier le devenir de l'ancien modèle sémantique Power BI V2 : archivage ou reprise des éléments encore utiles. Le nouveau tableau de bord connecté aux cinq tables `mart` est fonctionnel.
 - Étendre le périmètre au-delà des quatre opérations pilotes.
 - Standardiser davantage les documents sources.
 - Intégrer les informations réelles de paiement et de clôture lorsqu'elles seront disponibles.
