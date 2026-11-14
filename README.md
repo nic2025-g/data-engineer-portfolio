@@ -28,7 +28,7 @@ pas la validation du projet de formation.
 | Consommation des bâtiments | Machine learning | À documenter |
 | Analyse d’une base NoSQL | MongoDB et BI | À documenter |
 | Construction et tests d’une infrastructure | Infrastructure de données | À documenter |
-| Modélisation d’une infrastructure cloud | Cloud | À documenter |
+| Modélisation d’une infrastructure cloud | Architecture AWS, Redpanda et PySpark | [Consulter la fiche](projets/cloud-streaming/README.md) |
 | Pipeline d’orchestration des flux | Orchestration et automatisation | À documenter |
 | Puls-Events — Assistant culturel RAG | Python, Mistral AI, FAISS, LangChain, Streamlit | [Consulter la fiche](projets/puls-events/README.md) |
 | Avantages Sportifs | Pipeline de données complet | À documenter |
