@@ -1,0 +1,9 @@
+profiles.yml
+target/
+logs/
+dbt_packages/
+.user.yml
+.env
+.venv/
+venv/
+__pycache__/

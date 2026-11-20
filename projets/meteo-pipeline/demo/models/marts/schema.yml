@@ -1,0 +1,233 @@
+# =============================================================================
+# SCHEMA : marts
+# ROLE   : Definit la documentation et les tests de qualite des modeles
+#          de la couche marts (tables analytiques finales).
+#          Ces tables sont consommees directement par les data scientists
+#          et les algorithmes de prevision de GreenCoop.
+# =============================================================================
+
+version: 2
+
+models:
+
+  # ---------------------------------------------------------------------------
+  # SCHEMA EN ETOILE — DIMENSIONS
+  # Les dimensions decrivent les entites stables du modele.
+  # Elles sont jointes a fact_weather via leurs cles respectives.
+  # ---------------------------------------------------------------------------
+
+  - name: dim_weather_stations
+    description: >
+      Dimension des stations meteorologiques.
+      Integre les metadonnees completes des stations officielles (InfoClimat)
+      et amateurs (Weather Underground) conformement aux specs GreenCoop.
+      Cle primaire : station_id — jointure avec fact_weather.station_id
+    columns:
+      - name: station_id
+        description: "Identifiant unique de la station (ex: 00052, IICHTE19)"
+        tests:
+          - not_null
+          - unique
+      - name: station_nom
+        description: "Nom lisible de la station (ex: Bergues, WeerstationBS)"
+        tests:
+          - not_null
+      - name: source
+        description: "Reseau source : infoclimat ou weather_underground"
+        tests:
+          - not_null
+      - name: type_station
+        description: "Type de station : officielle (InfoClimat) ou amateur (WU)"
+        tests:
+          - not_null
+      - name: pays
+        description: "Pays de la station : France ou Belgique"
+        tests:
+          - not_null
+      - name: ville
+        description: "Ville ou commune de la station"
+        tests:
+          - not_null
+      - name: latitude
+        description: "Latitude GPS en degres decimaux (WGS84)"
+        tests:
+          - not_null
+      - name: longitude
+        description: "Longitude GPS en degres decimaux (WGS84)"
+        tests:
+          - not_null
+      - name: elevation_m
+        description: "Altitude de la station en metres"
+        tests:
+          - not_null
+      - name: hardware
+        description: "Materiel de la station"
+        tests:
+          - not_null
+      - name: software
+        description: "Logiciel : EasyWeatherV1.6.6 / EasyWeatherPro_V5.1.6 / InfoClimat v1"
+        tests:
+          - not_null
+      - name: source_description
+        description: "Description complete du reseau source"
+        tests:
+          - not_null
+
+  - name: dim_date
+    description: >
+      Dimension calendaire par jour.
+      Enrichit les analyses avec attributs : saison, weekend, periode de chauffe.
+      Cle primaire : date
+    columns:
+      - name: date
+        description: "Date au format YYYY-MM-DD — cle primaire"
+        tests:
+          - not_null
+          - unique
+      - name: jour
+        description: "Numero du jour dans le mois (1-31)"
+        tests:
+          - not_null
+      - name: mois
+        description: "Numero du mois (1-12)"
+        tests:
+          - not_null
+      - name: annee
+        description: "Annee sur 4 chiffres"
+        tests:
+          - not_null
+      - name: est_weekend
+        description: "True si samedi ou dimanche"
+        tests:
+          - not_null
+      - name: saison
+        description: "Saison : Hiver, Printemps, Ete, Automne"
+        tests:
+          - not_null
+      - name: est_periode_chauffe
+        description: "True si dec, jan, fev, mar — forte demande electrique GreenCoop"
+        tests:
+          - not_null
+
+  - name: dim_time
+    description: >
+      Dimension temporelle par heure (0 a 23).
+      Identifie les heures de pointe electrique GreenCoop (7h-9h et 18h-21h).
+      Cle primaire : heure
+    columns:
+      - name: heure
+        description: "Heure de la journee (0-23) — cle primaire"
+        tests:
+          - not_null
+          - unique
+      - name: tranche_horaire
+        description: "Nuit / Matin / Apres-midi / Soir"
+        tests:
+          - not_null
+      - name: periode_tarif
+        description: "Pointe matin / Pointe soir / Creuse nuit / Normale"
+        tests:
+          - not_null
+      - name: est_heure_pointe
+        description: "True si heure de pointe de consommation electrique"
+        tests:
+          - not_null
+
+  - name: dim_source
+    description: >
+      Dimension des sources de donnees meteorologiques.
+      Decrit chaque reseau : frequence, format, fiabilite.
+      Cle primaire : source_id
+    columns:
+      - name: source_id
+        description: "Identifiant : infoclimat ou weather_underground"
+        tests:
+          - not_null
+          - unique
+      - name: source_nom
+        description: "Nom commercial de la source"
+        tests:
+          - not_null
+      - name: frequence_releve_min
+        description: "Frequence de releve en minutes (10, 15 ou 30)"
+        tests:
+          - not_null
+      - name: fiabilite
+        description: "Niveau de fiabilite : Haute, Moyenne, Basse"
+        tests:
+          - not_null
+
+  # ---------------------------------------------------------------------------
+  # SCHEMA EN ETOILE — TABLE DE FAITS
+  # Centralise toutes les mesures meteorologiques.
+  # Reliee aux dimensions via des cles etrangeres.
+  # ---------------------------------------------------------------------------
+
+  - name: fact_weather
+    description: >
+      Table de faits centrale du schema en etoile.
+      1 143 releves avec horodatage complet (stations InfoClimat uniquement).
+      Cle primaire : fact_id
+    columns:
+      - name: fact_id
+        description: "Cle surrogate : station_id + horodatage + source"
+        tests:
+          - not_null
+          - unique
+      - name: station_id
+        description: "Cle etrangere vers dim_weather_stations"
+        tests:
+          - not_null
+      - name: horodatage
+        description: "Date et heure exacte du releve (UTC)"
+        tests:
+          - not_null
+      - name: temperature_c
+        description: "Temperature en degres Celsius"
+        tests:
+          - not_null
+      - name: source
+        description: "Cle etrangere vers dim_source"
+        tests:
+          - not_null
+
+  # ---------------------------------------------------------------------------
+  # AGREGATIONS — MARTS ANALYTIQUES
+  # Tables pre-agreges pour les algorithmes de prevision GreenCoop.
+  # ---------------------------------------------------------------------------
+
+  - name: mart_meteo_horaire
+    description: >
+      Agregations meteorologiques par heure et par station.
+      Filtre les releves sans horodatage (WU sans date complete).
+    columns:
+      - name: station_id
+        description: "Identifiant de la station"
+        tests:
+          - not_null
+      - name: heure
+        description: "Timestamp tronque a l'heure pleine"
+        tests:
+          - not_null
+      - name: temperature_moy_c
+        description: "Temperature moyenne de l'heure en degres Celsius"
+        tests:
+          - not_null
+
+  - name: mart_meteo_journalier
+    description: >
+      Agregations meteorologiques par jour et par station.
+      Construit a partir de mart_meteo_horaire.
+    columns:
+      - name: station_id
+        description: "Identifiant de la station"
+        tests:
+          - not_null
+      - name: date
+        description: "Date au format YYYY-MM-DD"
+        tests:
+          - not_null
+      - name: temperature_moy_c
+        description: "Temperature moyenne journaliere en degres Celsius"
+        tests:
+          - not_null

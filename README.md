@@ -27,7 +27,7 @@ pas la validation du projet de formation.
 | Migration CSV vers MongoDB | Python, MongoDB, Docker Compose | [Consulter la fiche](projets/mongodb-migration/README.md) |
 | Consommation des bâtiments | Machine learning | À documenter |
 | Analyse d’une base NoSQL | MongoDB et BI | À documenter |
-| Construction et tests d’une infrastructure | Infrastructure de données | À documenter |
+| Construction et tests d’une infrastructure de données | Pipeline météo, PostgreSQL, dbt et AWS | [Consulter la fiche](projets/meteo-pipeline/README.md) |
 | Modélisation d’une infrastructure cloud | Architecture AWS, Redpanda et PySpark | [Consulter la fiche](projets/cloud-streaming/README.md) |
 | Pipeline d’orchestration des flux | Orchestration et automatisation | À documenter |
 | Puls-Events — Assistant culturel RAG | Python, Mistral AI, FAISS, LangChain, Streamlit | [Consulter la fiche](projets/puls-events/README.md) |

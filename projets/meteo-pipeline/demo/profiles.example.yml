@@ -1,0 +1,13 @@
+meteo_project:
+  target: demo
+  outputs:
+    demo:
+      type: postgres
+      host: 127.0.0.1
+      port: 55433
+      user: meteo_demo
+      password: meteo_demo_local
+      dbname: meteo_demo
+      schema: public
+      threads: 2
+      connect_timeout: 10

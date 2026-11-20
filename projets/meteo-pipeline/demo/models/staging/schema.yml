@@ -1,0 +1,48 @@
+version: 2  # Version du format YAML DBT (toujours 2 pour les sources et modèles)
+
+models:
+  - name: stg_infoclimat
+    description: "Donnees InfoClimat nettoyees - 4 stations Hauts-de-France"
+    columns:
+      - name: station_id
+        description: "Identifiant de la station InfoClimat"
+        tests:
+          - not_null
+      - name: horodatage
+        description: "Date et heure du releve UTC"
+        tests:
+          - not_null
+      - name: temperature_c
+        description: "Temperature en degres Celsius"
+        tests:
+          - not_null
+      - name: source
+        description: "Source de la donnee"
+        tests:
+          - not_null
+
+  - name: stg_ichtegem
+    description: "Donnees Weather Underground station Ichtegem BE"
+    columns:
+      - name: station_id
+        tests:
+          - not_null
+      - name: temperature_c
+        tests:
+          - not_null
+      - name: source
+        tests:
+          - not_null
+
+  - name: stg_la_madeleine
+    description: "Donnees Weather Underground station La Madeleine FR"
+    columns:
+      - name: station_id
+        tests:
+          - not_null
+      - name: temperature_c
+        tests:
+          - not_null
+      - name: source
+        tests:
+          - not_null
