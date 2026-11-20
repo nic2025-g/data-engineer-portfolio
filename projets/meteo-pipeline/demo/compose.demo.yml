@@ -1,0 +1,21 @@
+name: projet8-meteo-demo
+
+services:
+  postgres:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: meteo_demo
+      POSTGRES_PASSWORD: meteo_demo_local
+      POSTGRES_DB: meteo_demo
+    ports:
+      - "127.0.0.1:55433:5432"
+    volumes:
+      - meteo_demo_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U meteo_demo -d meteo_demo"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  meteo_demo_data:

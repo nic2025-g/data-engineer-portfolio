@@ -1,0 +1,6 @@
+﻿Projet 8 — Démonstration locale sur données fictives
+Exécution : 2026-11-20T17:33:26.294813Z
+Version dbt Core : 1.11.8
+Modèles réussis : 11
+Tests réussis : 61
+Comptages vérifiés : unified=196 ; faits=192 ; horaire=192 ; journalier=8

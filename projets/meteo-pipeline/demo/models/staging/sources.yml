@@ -1,0 +1,9 @@
+version: 2 # Version du format YAML DBT (toujours 2 pour les sources et modèles)
+
+sources:
+  - name: publicraw
+    schema: publicraw
+    tables:
+      - name: _airbyte_raw_infoclimat_raw
+      - name: _airbyte_raw_ichtegem_raw
+      - name: _airbyte_raw_la_madeleine_raw
