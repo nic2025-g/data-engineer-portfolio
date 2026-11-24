@@ -1,0 +1,120 @@
+﻿==================================================
+ANALYSE AIRBNB PARIS AVEC POLARS
+==================================================
+
+Dimensions : (95885, 75)
+Nombre total d'annonces : 95885
+
+2. Répartition par type de logement
+shape: (4, 2)
+┌─────────────────┬─────────────────┐
+│ room_type       ┆ nombre_annonces │
+│ ---             ┆ ---             │
+│ str             ┆ u32             │
+╞═════════════════╪═════════════════╡
+│ Entire home/apt ┆ 85733           │
+│ Private room    ┆ 8975            │
+│ Hotel room      ┆ 776             │
+│ Shared room     ┆ 401             │
+└─────────────────┴─────────────────┘
+
+3. Nombre d'hôtes distincts
+shape: (1, 1)
+┌──────────────┐
+│ nombre_hotes │
+│ ---          │
+│ u32          │
+╞══════════════╡
+│ 71979        │
+└──────────────┘
+
+4. Nombre de super-hôtes distincts
+shape: (1, 1)
+┌────────────────────┐
+│ nombre_super_hotes │
+│ ---                │
+│ u32                │
+╞════════════════════╡
+│ 10027              │
+└────────────────────┘
+
+5. Annonces avec réservation instantanée
+Nombre : 22094
+Pourcentage : 23.04%
+
+6. Médiane globale des avis
+shape: (1, 1)
+┌──────────────┐
+│ mediane_avis │
+│ ---          │
+│ f64          │
+╞══════════════╡
+│ 3.0          │
+└──────────────┘
+
+7. Médiane des avis selon le statut
+shape: (2, 3)
+┌───────────────────┬──────────────┬─────────────────┐
+│ host_is_superhost ┆ mediane_avis ┆ nombre_annonces │
+│ ---               ┆ ---          ┆ ---             │
+│ str               ┆ f64          ┆ u32             │
+╞═══════════════════╪══════════════╪═════════════════╡
+│ t                 ┆ 24.0         ┆ 14776           │
+│ f                 ┆ 2.0          ┆ 81035           │
+└───────────────────┴──────────────┴─────────────────┘
+
+8. Hôtes ayant plus de 100 annonces
+Nombre d'hôtes concernés : 24
+
+9. Jours indisponibles par mois
+shape: (4, 2)
+┌─────────────────┬─────────────────────────────┐
+│ room_type       ┆ moyenne_jours_indisponibles │
+│ ---             ┆ ---                         │
+│ str             ┆ f64                         │
+╞═════════════════╪═════════════════════════════╡
+│ Private room    ┆ 20.93                       │
+│ Entire home/apt ┆ 19.74                       │
+│ Shared room     ┆ 19.26                       │
+│ Hotel room      ┆ 15.93                       │
+└─────────────────┴─────────────────────────────┘
+
+10. Top 10 des quartiers par nombre d'annonces
+shape: (10, 2)
+┌────────────────────────┬─────────────────┐
+│ neighbourhood_cleansed ┆ nombre_annonces │
+│ ---                    ┆ ---             │
+│ str                    ┆ u32             │
+╞════════════════════════╪═════════════════╡
+│ Buttes-Montmartre      ┆ 10555           │
+│ Popincourt             ┆ 8430            │
+│ Vaugirard              ┆ 7802            │
+│ Batignolles-Monceau    ┆ 6857            │
+│ Entrepôt               ┆ 6558            │
+│ Passy                  ┆ 6407            │
+│ Buttes-Chaumont        ┆ 5465            │
+│ Ménilmontant           ┆ 5271            │
+│ Opéra                  ┆ 4570            │
+│ Reuilly                ┆ 4003            │
+└────────────────────────┴─────────────────┘
+
+11. Nombre moyen d'avis mensuels par quartier
+shape: (10, 2)
+┌────────────────────────┬───────────────────────┐
+│ neighbourhood_cleansed ┆ moyenne_avis_mensuels │
+│ ---                    ┆ ---                   │
+│ str                    ┆ f64                   │
+╞════════════════════════╪═══════════════════════╡
+│ Bourse                 ┆ 1.58                  │
+│ Louvre                 ┆ 1.38                  │
+│ Élysée                 ┆ 1.32                  │
+│ Temple                 ┆ 1.26                  │
+│ Hôtel-de-Ville         ┆ 1.24                  │
+│ Palais-Bourbon         ┆ 1.21                  │
+│ Vaugirard              ┆ 1.2                   │
+│ Entrepôt               ┆ 1.18                  │
+│ Opéra                  ┆ 1.18                  │
+│ Reuilly                ┆ 1.18                  │
+└────────────────────────┴───────────────────────┘
+
+Analyse terminée avec succès.

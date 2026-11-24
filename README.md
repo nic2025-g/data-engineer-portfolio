@@ -26,7 +26,7 @@ pas la validation du projet de formation.
 | Audit d’un environnement de données | Audit et qualité des données | À documenter |
 | Migration CSV vers MongoDB | Python, MongoDB, Docker Compose | [Consulter la fiche](projets/mongodb-migration/README.md) |
 | Consommation des bâtiments | Machine learning | À documenter |
-| Analyse d’une base NoSQL | MongoDB et BI | À documenter |
+| Analyse et architecture NoSQL — Airbnb | MongoDB, Python, Polars, Power BI, réplication et sharding | [Consulter la fiche](projets/mongodb-airbnb/README.md) |
 | Construction et tests d’une infrastructure de données | Pipeline météo, PostgreSQL, dbt et AWS | [Consulter la fiche](projets/meteo-pipeline/README.md) |
 | Modélisation d’une infrastructure cloud | Architecture AWS, Redpanda et PySpark | [Consulter la fiche](projets/cloud-streaming/README.md) |
 | Pipeline d’orchestration des flux | Orchestration et automatisation | À documenter |
