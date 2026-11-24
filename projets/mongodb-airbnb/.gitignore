@@ -1,0 +1,56 @@
+
+# ==========================================
+# Projet 7 - MongoDB Airbnb
+# ==========================================
+
+# Environnements virtuels Python
+.venv/
+venv/
+env/
+
+# Cache Python
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+.ipynb_checkpoints/
+
+# Variables d'environnement et secrets
+.env
+.env.*
+!.env.example
+credentials/
+secrets/
+*.pem
+*.key
+*.log
+
+# Donnees sources et fichiers volumineux
+data/
+datasets/
+exports/
+*.csv
+*.parquet
+*.bson
+*.dump
+*.zip
+*.gz
+listings_*.json
+nos_cites*.json
+
+# Archives des anciennes presentations
+presentation/archives/
+
+# Fichiers temporaires Office
+~$*.pptx
+~$*.xlsx
+~$*.docx
+
+# Configuration locale des editeurs
+.vscode/
+.idea/
+
+# Fichiers systeme
+Thumbs.db
+Desktop.ini
+.DS_Store
