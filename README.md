@@ -31,7 +31,7 @@ pas la validation du projet de formation.
 | Modélisation d’une infrastructure cloud | Architecture AWS, Redpanda et PySpark | [Consulter la fiche](projets/cloud-streaming/README.md) |
 | Pipeline d’orchestration des flux | Orchestration et automatisation | À documenter |
 | Puls-Events — Assistant culturel RAG | Python, Mistral AI, FAISS, LangChain, Streamlit | [Consulter la fiche](projets/puls-events/README.md) |
-| Avantages Sportifs | Pipeline de données complet | À documenter |
+| Avantages Sportifs | Python, PostgreSQL, Redpanda, dbt, Soda, Kestra, Slack et Power BI | [Consulter la fiche](projets/avantages-sportifs/README.md) |
 | ATLAS — mission en entreprise | Python, PostgreSQL, dbt, Power BI | [Consulter la fiche](projets/atlas/README.md) |
 
 ## Organisation
